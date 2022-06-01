@@ -1,9 +1,44 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from 'react'
+import styled from 'styled-components';
 
 function App() {
+ 
+const Button = styled.button`
+  /* Same as above */
+`;
+const ButtonToggle = styled(Button)`
+  opacity: 0.6;
+  ${({ active }) =>
+    active &&
+    `
+    opacity: 1;
+  `}
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+`;
+const types = ['About Me', 'Portfolio', 'Contact', 'Resume'];
+function ToggleGroup() {
+  const [active, setActive] = useState(types[0]);
+  return (
+    <ButtonGroup>
+      {types.map(type => (
+        <ButtonToggle
+          key={type}
+          active={active === type}
+          onClick={() => setActive(type)}
+        >
+          {type}
+        </ButtonToggle>
+      ))}
+    </ButtonGroup>
+  );
+
 // {/* the corresponding nav-tile to the current page is highlighted */}
 // About me page is default on first load
+  }
+
 
 function aboutMe() {
 // working nav bar wiht corresponding pages 
@@ -42,7 +77,7 @@ function footer() {
     <header>
     {/* need name */}
     {/* need the following tiles -> About Me, Portfolio, Contact, Resume */}
-    
+    <button onClick="highlight"></button>
     </header>
     <div class="projImg">{project}</div>
     <Footer>This is the Footer</Footer>
